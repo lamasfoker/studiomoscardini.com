@@ -9,7 +9,15 @@
 
     <title>My Project</title>
 
-    <link rel="icon" href="/studiomoscardini.com/favicon.ico" type="image/x-icon">
+    <script>
+        if (window.location.hostname.includes("github.io")) {
+            const base = document.createElement("base");
+            base.href = "/studiomoscardini.com/";
+            document.head.prepend(base);
+        }
+    </script>
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -26,14 +34,14 @@
         <img src="https://placehold.co/400x300" alt="Placeholder Image 2" class="w-full">
         <img src="https://placehold.co/400x300" alt="Placeholder Image 3" class="w-full">
         <img src="https://placehold.co/400x300" alt="Placeholder Image 4" class="w-full">
-        <a href="/studiomoscardini.com/projects.html" class="w-full h-auto bg-white flex justify-center items-center">
-            <img src="/studiomoscardini.com/images/logo.svg" alt="logo" class="object-contain w-full h-full"/>
+        <a href="projects.html" class="w-full h-auto bg-white flex justify-center items-center">
+            <img src="images/logo.svg" alt="logo" class="object-contain w-full h-full"/>
         </a>
         <img src="https://placehold.co/400x300" alt="Placeholder Image 6" class="w-full">
     </div>
 
-    <a href="/studiomoscardini.com/projects.html" class="md:hidden w-full h-auto bg-white flex justify-center items-center">
-        <img src="/studiomoscardini.com/images/logo.svg" alt="logo" class="object-contain w-full h-full"/>
+    <a href="projects.html" class="md:hidden w-full h-auto bg-white flex justify-center items-center">
+        <img src="images/logo.svg" alt="logo" class="object-contain w-full h-full"/>
     </a>
 </main>
 
