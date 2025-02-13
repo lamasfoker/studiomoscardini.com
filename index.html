@@ -20,35 +20,66 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <style>
         body {
             font-family: sans-serif;
         }
-    </style>
+    </style><style>
+    .fade-slide {
+        transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+    }
+    .hidden-slide {
+        opacity: 0;
+    }
+    .visible-slide {
+        opacity: 1;
+    }
+</style>
 </head>
-<body class="bg-white text-black flex md:block flex-col h-screen md:h-auto justify-center">
-<main class="container mx-auto px-4 py-10">
-    <div class="hidden md:grid grid-cols-3 gap-4">
-        <img src="https://placehold.co/400x300" alt="Placeholder Image 1" class="w-full">
-        <img src="https://placehold.co/400x300" alt="Placeholder Image 2" class="w-full">
-        <img src="https://placehold.co/400x300" alt="Placeholder Image 3" class="w-full">
-        <img src="https://placehold.co/400x300" alt="Placeholder Image 4" class="w-full">
-        <a href="projects.html" class="w-full h-auto bg-white flex justify-center items-center">
-            <img src="images/logo.svg" alt="logo" class="object-contain w-full h-full"/>
-        </a>
-        <img src="https://placehold.co/400x300" alt="Placeholder Image 6" class="w-full">
-    </div>
+<body class="bg-white text-white flex justify-center items-center h-screen relative overflow-hidden">
 
-    <a href="projects.html" class="md:hidden w-full h-auto bg-white flex justify-center items-center">
+<div x-data="carousel()" x-init="start()" class="absolute inset-0 z-0">
+    <template x-for="(image, i) in images" :key="i">
+        <div
+                class="absolute inset-0 w-full h-full bg-cover bg-center fade-slide"
+                :class="i === index ? 'visible-slide' : 'hidden-slide'"
+                :style="{ backgroundImage: `url(${image})` }"
+        ></div>
+    </template>
+</div>
+
+<main class="relative z-10">
+    <a href="projects.html" class="w-32 md:w-48">
         <img src="images/logo.svg" alt="logo" class="object-contain w-full h-full"/>
     </a>
 </main>
 
-<footer class="text-center py-4 font-light tracking-widest">
+<footer class="absolute bottom-4 text-center w-full font-light tracking-widest z-10">
     <p>Via Gazzata 16, 42018, San Martino in Rio (RE)</p>
     <p>italo.moscardini@studiomoscardini.com</p>
     <p>Tel: 0522696600</p>
 </footer>
+
+<script>
+    function carousel() {
+        return {
+            images: [
+                "https://placehold.co/1920x1080?text=Image+1",
+                "https://placehold.co/1920x1080/orange/white?text=Image+2",
+                "https://placehold.co/1920x1080?text=Image+3",
+                "https://placehold.co/1920x1080/orange/white?text=Image+4"
+            ],
+            index: 0,
+            start() {
+                setInterval(() => {
+                    this.index = (this.index + 1) % this.images.length;
+                }, 4000); // Change every 4 seconds
+            }
+        };
+    }
+</script>
+
 </body>
 </html>
